@@ -1,0 +1,98 @@
+{
+    "Product": {
+      "name": { "string": {} },
+      "description": { "string": {} },
+      "venue": { "string": {} },
+      "type": { "string": [
+                "event",
+                "access-ticket", 
+                "package",
+                "movie"
+          ] 
+      },
+      "status": { "string": [
+                  "publish",
+                  "draft", 
+                  "cancel",
+                  "expire"
+            ] 
+      },
+      "stateId": { "int": {"min": 0, "max": 1000000} },
+      "city": { "string": {} },
+      "billerId": { "belongsTo": "Biller" },
+      "tickets": { "hasMany": "Ticket" }
+    },
+    "Transaction": {
+      "session": { "regexp": "[A-Z][a-z]{8,8}" },
+      "paymentStatus": { "string": [
+                        "payment-failed",
+                        "in-progress",
+                        "successful"
+                    ] 
+      },
+      "status": { "string": [
+                  "pending",
+                  "booked",
+                  "failed",
+                  "canceled"
+              ] 
+      },
+      "userType": { "string": [
+                  "customer",
+                  "agent",
+                  "vendor"
+              ] 
+      },
+      "ref": { "regexp": "[A-Z][a-z]{15,15}" },
+      "userId": { "int": {"min": 0, "max": 1000000} },
+      "amount": { "int": {"min": 0, "max": 1000000} },
+      "total": { "int": {"min": 0, "max": 1000000} },
+      "paymentResponse": { "string": [
+                            "successful",
+                            "failed"
+                        ] 
+      }
+    },
+    "Ticket": {
+      "name": { "string": {} },
+      "description": { "string": {} },
+      "amount": { "int": {"min": 0, "max": 1000000} },
+      "quantity": { "int": {"min": 0, "max": 1000000} },
+      "sold": { "int": {"min": 0, "max": 1000000} },
+      "available": { "int": {"min": 0, "max": 1000000} },
+      "productId": {"belongsTo": "Product"},
+      "productType": {"belongsTo": "Product"}
+    },
+    "Booking": {
+      "session": { "regexp": "[A-Z][a-z]{8,8}" },
+      "userId": { "int": {"min": 0, "max": 1000000} },
+      "amount": { "int": {"min": 0, "max": 1000000} },
+      "quantity": { "int": {"min": 0, "max": 1000000} },
+      "status": { "string": [
+                  "pending",
+                  "booked",
+                  "failed"
+              ] 
+      },
+      "billerId": { "belongsTo": "Biller" },
+      "bookingId": { "int": {"min": 0, "max": 1000000} },
+      "ticketId": { "belongsTo": "Ticket" }
+    },
+    "Category": {
+      "name": { "string": {} },
+      "description": { "string": {} },
+      "mediaId": { "int": {"min": 0, "max": 1000000} },
+      "secondaryMediaId": { "int": {"min": 0, "max": 1000000} },
+      "categoryId": { "int": {"min": 0, "max": 1000000} },
+      "comingSoon": { "boolean": {} },
+      "newTab": { "boolean": {} },
+      "status": { "string": ["publish"] },
+      "link": { "regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080" },
+      "metaDescription": { "string": {} },
+      "metaKeyword": { "string": {} }
+    },
+    "Biller": {
+      "name": { "string": {} },
+      "products": { "hasMany": "Product" }
+    }
+  }
