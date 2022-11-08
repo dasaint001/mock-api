@@ -19,11 +19,11 @@
       },
       "stateId": { "int": {"min": 0, "max": 1000000} },
       "city": { "string": {} },
-      "billerId": { "belongsTo": "Biller" },
+      "billers": { "belongsTo": "Biller" },
       "tickets": { "hasMany": "Ticket" }
     },
     "Transaction": {
-      "session": { "regexp": "[A-Z][a-z]{8,8}" },
+      "session": { "regexp": "[A-Z][a-z]{7,7}" },
       "paymentStatus": { "string": [
                         "payment-failed",
                         "in-progress",
@@ -60,11 +60,11 @@
       "quantity": { "int": {"min": 0, "max": 1000000} },
       "sold": { "int": {"min": 0, "max": 1000000} },
       "available": { "int": {"min": 0, "max": 1000000} },
-      "productId": {"belongsTo": "Product"},
-      "productType": {"belongsTo": "Product"}
+      "products": {"belongsTo": "Product"},
+      "type": {"belongsTo": "Product"}
     },
     "Booking": {
-      "session": { "regexp": "[A-Z][a-z]{8,8}" },
+      "session": { "regexp": "[A-Z][a-z]{7,7}" },
       "userId": { "int": {"min": 0, "max": 1000000} },
       "amount": { "int": {"min": 0, "max": 1000000} },
       "quantity": { "int": {"min": 0, "max": 1000000} },
@@ -74,9 +74,9 @@
                   "failed"
               ] 
       },
-      "billerId": { "belongsTo": "Biller" },
+      "billers": { "belongsTo": "Biller" },
       "bookingId": { "int": {"min": 0, "max": 1000000} },
-      "ticketId": { "belongsTo": "Ticket" }
+      "tickets": { "belongsTo": "Ticket" }
     },
     "Category": {
       "name": { "string": {} },
